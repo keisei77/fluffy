@@ -1,0 +1,22 @@
+{
+  "name": "fluffy",
+  "version": "1.0.0",
+  "description": "Misc helpful functions to make your life better.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/keisei77/fluffy.git"
+  },
+  "keywords": [
+    "misc functions"
+  ],
+  "author": "Keisei Jia",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/keisei77/fluffy/issues"
+  },
+  "homepage": "https://github.com/keisei77/fluffy#readme"
+}
