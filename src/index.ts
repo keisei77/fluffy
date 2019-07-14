@@ -1,3 +1,3 @@
-export default function() {
-  throw Error();
+export default function required(msg) {
+  throw TypeError(msg);
 }
