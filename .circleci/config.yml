@@ -38,11 +38,6 @@ jobs:
       - *restore_yarn_cache
       - *run_yarn
       - run: yarn build
-      - persist_to_workspace:
-          root: build
-          paths:
-            - node_modules
-            - dist
       - save_cache:
           paths:
             - node_modules
