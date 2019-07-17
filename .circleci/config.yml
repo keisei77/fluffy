@@ -4,6 +4,11 @@
 #
 version: 2
 
+defaults: &defaults
+  working_directory: ~/fluffy
+  docker:
+    - image: circleci/openjdk:8-jdk-node-browsers
+
 aliases:
   - &docker
     - image: circleci/openjdk:8-jdk-node-browsers
@@ -22,14 +27,42 @@ aliases:
       command: yarn --frozen-lockfile
 
 jobs:
-  test_source:
-    docker: *docker
-
+  test:
+    <<: *defaults
     steps:
       - checkout
-      - *restore_yarn_cache
-      - *run_yarn
-      - run: yarn test --maxWorkers=2
+
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}.
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+
+      - run: npm install
+      - run:
+          name: Run tests
+          command: yarn test --maxWorkers=2
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+
+      - persist_to_workspace:
+          root: ~/fluffy
+          paths: .
+
+  deploy:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/repo
+      - run:
+          name: Authenticate with registry
+          command: echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > ~/fluffy/.npmrc
+      - run:
+          name: Publish package
+          command: npm publish
 
   build:
     docker: *docker
@@ -42,3 +75,20 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
+
+workflows:
+  version: 2
+  test-deploy:
+    jobs:
+      - test:
+          filters:
+            tags:
+              only: /^v.*/
+      - deploy:
+          requires:
+            - test
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/
