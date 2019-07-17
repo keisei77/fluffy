@@ -59,7 +59,7 @@ jobs:
           at: ~/fluffy
       - run:
           name: Authenticate with registry
-          command: echo "//registry.npmjs.org/:_authToken=$npm_TOKEN" > ~/fluffy/.npmrc
+          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/fluffy/.npmrc
       - run:
           name: Publish package
           command: npm publish
