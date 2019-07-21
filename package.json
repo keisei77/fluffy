@@ -1,6 +1,6 @@
 {
   "name": "@keisei/fluffy",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Misc helpful functions to make your life better.",
   "main": "index.js",
   "scripts": {
