@@ -1,3 +1,3 @@
-export default function required(msg) {
+export default function required(msg: string) {
   throw TypeError(msg);
 }
