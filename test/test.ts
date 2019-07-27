@@ -1,8 +1,9 @@
-import required from '../src/index';
+import fluffy from '../src/index';
+import { required } from '../src/index';
 
 test('should throw error: params required', () => {
   expect(() => {
-    required('params required');
+    fluffy.required('params required');
   }).toThrow('params required');
 });
 
