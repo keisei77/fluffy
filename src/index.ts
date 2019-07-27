@@ -1,3 +1,7 @@
-export default function required(msg?: string) {
+export const required = (msg?: string) => {
   throw TypeError(msg);
-}
+};
+
+export default {
+  required
+};
