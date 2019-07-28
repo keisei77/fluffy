@@ -1,7 +1,4 @@
-export const required = (msg?: string) => {
-  throw TypeError(msg);
-};
+import required from './required';
 
-export default {
-  required
-};
+export { required };
+export default { required };
