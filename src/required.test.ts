@@ -1,5 +1,5 @@
-import fluffy from '../src/index';
-import { required } from '../src/index';
+import fluffy from './index';
+import { required } from './index';
 
 test('should throw error: params required', () => {
   expect(() => {
