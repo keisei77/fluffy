@@ -1,6 +1,6 @@
 {
   "name": "@keisei/fluffy",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Misc helpful functions to make your life better.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
