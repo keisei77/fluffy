@@ -10,6 +10,9 @@
     "prepublish": "tsc",
     "build": "npm run clean && parcel build src/index.ts -d lib"
   },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "files": [
     "lib",
     "src"
